@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task Manager</title>
+  </head>
+  <body>
+  <div>
+    <div id="myDiv" class="header">
+    <h2>My Task Manager</h2>
+    <input type="text" id="myInput" placeholder="Title..."/>
+    <span onclick="AddItem()" class="add" style="cursor:pointer">Add</span>
+    </div>
+    <ul id="myul">
+        <li>Attend the wedding </li>
+        <li>Bring the milk</li>
+        <li>Complet the assignment</li>
+        <li>Interview at 2 pm on monday</li>
+    </ul>
+  </div>
+  </body>
+  <script type="text/javascript">
+
+
+const myList=document.getElementsByTagName("LI");
+  for(let i=0; i<myList.length; i++){
+    let span=document.createElement("SPAN");
+    let text=document.createTextNode("\u00D7");
+    span.className="close"
+    span.style.cursor="pointer";
+    span.appendChild(text);
+    myList[i].appendChild(span);
+}
+const classes=document.getElementsByClassName("close");
+    for(let i=0;i<classes.length;i++){
+        classes[i].onclick=function(){
+        let div=this.parentElement;
+        div.style.display="none";
+      }
+    }
+    const AddItem=()=>{
+  let textValue=document.getElementById("myInput").value;
+  console.log("print",textValue);
+  if(textValue==""){
+     alert("Please Enter a Task");
+  }
+   else{
+    document.getElementById("myInput").value="";
+     let li=document.createElement("LI");
+     let newtext=document.createTextNode(textValue);
+     li.appendChild(newtext);
+     let span=document.createElement("SPAN");
+     let text=document.createTextNode("\u00D7");
+     span.className="close"
+     span.appendChild(text);
+     span.style.cursor="pointer";
+     li.appendChild(span);
+     let ul=document.getElementById("myul");
+     ul.appendChild(li);
+     const classes=document.getElementsByClassName("close");
+     for(let i=0;i<classes.length;i++){
+        classes[i].onclick=function(){
+        let div=this.parentElement;
+        div.style.display="none";
+      }
+    }
+
+   }
+}
+  </script>
+</html>
